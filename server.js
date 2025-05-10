@@ -13,6 +13,12 @@ app.use(express.json());
 // Middleware to enable CORS (different domain access)
 app.use(cors());
 
+// Home page route
+app.get('/', (req, res) => {
+    res.send('Welcome!');
+});
+
+
 // Routes index.js
 app.use('/contacts', contactsRoutes);
 
