@@ -153,6 +153,9 @@
           },
           "404": {
             "description": "Contact not found"
+          },
+          "204": {
+            "description": "Contact updated successfully with no content"
           }
         }
       },
@@ -176,6 +179,9 @@
           },
           "404": {
             "description": "Contact not found"
+          },
+          "204": {
+            "description": "Contact updated successfully with no content"
           }
         }
       }
