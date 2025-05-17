@@ -71,6 +71,10 @@ router.get('/:id', contactsController.getContactById);
  *  responses:
  *  201:
  *  description: Contact created successfully
+ *  400:
+ * description: Invalid request body
+ *  500:
+ * description: Internal server error
  */
 router.post('/', contactsController.createContact);
 
