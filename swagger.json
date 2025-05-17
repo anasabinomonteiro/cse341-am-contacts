@@ -11,6 +11,20 @@
     "https"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "summary": "Home page",
+        "description": "Returns a welcome message",
+        "tags": [
+          "Root"
+        ],
+        "responses": {
+          "200": {
+            "description": "Welcome message"
+          }
+        }
+      }
+    },
     "/contacts": {
       "get": {
         "summary": "Get all contacts",
