@@ -1,0 +1,37 @@
+ 
+###All contacts (Success✅)
+GET http://localhost:3000/contacts
+
+
+###View contact by ID (Success✅)
+GET http://localhost:3000/contacts/681f828f4cbd2c4b5392f7e3
+
+
+###Create a new contact (Success✅)
+POST http://localhost:3000/contacts 
+Content-Type: application/json
+
+{
+    "firstName": "Maria",
+    "lastName": "Alves",
+    "email": "malves@createnew.com",
+    "favoriteColor": "pink",
+    "birthday": "1958-02-01"
+}
+
+###PUT - Update a contact (Success✅)
+PUT http://localhost:3000/contacts/6827e62700cb5ee0dc2a67ad
+Content-Type: application/json
+
+{
+    "firstName": "Maria",
+    "lastName": "Alves",
+    "email": "lia@createnew.com",
+    "favoriteColor": "white",
+    "birthday": "1958-02-16"
+ }
+
+###Delete a contact(Success✅)
+DELETE http://localhost:3000/contacts/6827e62700cb5ee0dc2a67ad
+
+

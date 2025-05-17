@@ -1,37 +1,44 @@
 const express = require('express');
 const app = express();
-const routes = require('./routes');
 const contactsRoutes = require('./routes/contacts');
 require('dotenv').config();
 const cors = require('cors');
+const { connectToDb } = require('./db/connect');
+const swaggerRoute = require('./routes/swagger');
 
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON
 app.use(express.json());
 
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        return res.status(400).json({ message: 'Invalid JSON payload' });
+    }
+    next();
+});
+
 // Middleware to enable CORS (different domain access)
 app.use(cors());
+
+// Middleware to serve static files
+app.use('/contacts', contactsRoutes);
+app.use('/', swaggerRoute);
 
 // Home page route
 app.get('/', (req, res) => {
     res.send('Welcome!');
 });
 
-
-// Routes index.js
-app.use('/contacts', contactsRoutes);
-
-// Route to handle dabase connection errors
-async function initializeServer() {
+async function startServer() {
     try {
+        await connectToDb();
         app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
+            console.log(`Server is running on http://localhost:${port}`);
         });
     } catch (error) {
         console.error('Error starting server:', error);
-        process.exit(1); // Ends the process with failure code 1 (general error)
     }
 }
-
-initializeServer();
+// Start the server
+startServer();
