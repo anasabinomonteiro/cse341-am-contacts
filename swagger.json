@@ -11,41 +11,53 @@
     "https"
   ],
   "paths": {
-    "/": {
+    "/contacts": {
       "get": {
-        "description": "",
+        "summary": "Get all contacts",
+        "tags": [
+          "Contacts"
+        ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "A list of contacts"
           }
         }
       },
       "post": {
-        "description": "",
+        "summary": "Create a new contact",
+        "tags": [
+          "Contacts"
+        ],
         "parameters": [
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
+            "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "favoriteColor",
+                "birthday"
+              ],
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "birthday": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date"
                 }
               }
             }
@@ -53,114 +65,117 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Contact created successfully"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Invalid request body"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
     },
-    "/{id}": {
+    "/contacts/{id}": {
       "get": {
-        "description": "",
+        "summary": "Get a contact by ID",
+        "tags": [
+          "Contacts"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the contact"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "A contact object"
           },
           "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "Contact not found"
           }
         }
       },
       "put": {
-        "description": "",
+        "summary": "Update a contact by ID",
+        "tags": [
+          "Contacts"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the contact"
           },
           {
-            "name": "body",
             "in": "body",
+            "name": "body",
+            "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "favoriteColor",
+                "birthday"
+              ],
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "type": "string"
                 },
                 "birthday": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date"
                 }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
+          "200": {
+            "description": "Contact updated successfully"
           },
           "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "Contact not found"
           }
         }
       },
       "delete": {
-        "description": "",
+        "summary": "Delete a contact by ID",
+        "tags": [
+          "Contacts"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the contact"
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
+          "200": {
+            "description": "Contact deleted successfully"
           },
           "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "Contact not found"
           }
         }
       }
