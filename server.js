@@ -7,7 +7,7 @@ const { connectToDb } = require('./db/connect');
 const contactsRoutes = require('./routes/contacts');
 const indexRoute = require('./routes/index');
 const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger.json');
+
 const fs = require('fs');
 const swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json'));
 
