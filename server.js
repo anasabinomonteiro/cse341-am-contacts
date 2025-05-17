@@ -6,7 +6,7 @@ const { connectToDb } = require('./db/connect');
 
 const contactsRoutes = require('./routes/contacts');
 const indexRoute = require('./routes/index');
-const swaggerUi = require(swaggerUi-express);
+const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 const port = process.env.PORT || 3000;
