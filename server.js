@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
-const contactsRoutes = require('./routes/contacts');
 require('dotenv').config();
 const cors = require('cors');
 const { connectToDb } = require('./db/connect');
-const swaggerRoute = require('./routes/swagger');
+
+const contactsRoutes = require('./routes/contacts');
+const indexRoute = require('./routes/index');
+const swaggerUi = require(swaggerUi-express);
+const swaggerDocument = require('./swagger.json');
 
 const port = process.env.PORT || 3000;
 
@@ -22,19 +25,18 @@ app.use((err, req, res, next) => {
 app.use(cors());
 
 // Middleware to serve static files
+app.use('/', indexRoute);
 app.use('/contacts', contactsRoutes);
-app.use('/', swaggerRoute);
 
-// Home page route
-app.get('/', (req, res) => {
-    res.send('Welcome!');
-});
+//swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 async function startServer() {
     try {
         await connectToDb();
         app.listen(port, () => {
             console.log(`Server is running on http://localhost:${port}`);
+            console.log(`Swagger UI is available at http://localhost:${port}/api-docs`);
         });
     } catch (error) {
         console.error('Error starting server:', error);
