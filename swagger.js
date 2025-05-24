@@ -5,8 +5,10 @@ const doc = {
         title: 'My API',
         description: 'Contacts API',
     },
-    host: 'cse341-am-contacts.onrender.com',
-    schemes: ['https'],
+    host: process.env.SWAGGER_HOST || 'localhost:3000',
+    schemes: process.env.SWAGGER_SCHEME ? [process.env.SWAGGER_SCHEME] : ['http'],
+    // host: 'cse341-am-contacts.onrender.com',
+    // schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

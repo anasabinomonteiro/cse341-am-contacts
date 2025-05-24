@@ -5,10 +5,10 @@
     "description": "Contacts API",
     "version": "1.0.0"
   },
-  "host": "cse341-am-contacts.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -195,7 +195,7 @@
             "description": "Contact not found"
           },
           "204": {
-            "description": "Contact updated successfully with no content"
+            "description": "Contact deleted successfully with no content"
           }
         }
       }
